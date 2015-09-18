@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>index</title>
+</head>
+
+        <script src="raphael.js"></script>
+        <style media="screen">
+            body {
+                margin: 0;
+                padding: 0;
+                text-align: center;
+				background-color:#ffff53;
+            }
+            h1 {
+                font-weight: 400;
+                height: 5%;
+            }
+            #canvas {
+                height: 480px;
+                margin: 0 auto;
+                text-align: left;
+                width: 640px;
+            }
+            #code {
+                font-family: Consolas, Monaco, "Lucida Console", monospace;
+                height: 4em;
+                margin: 10px;
+                padding: 0;
+                width: 90%;
+            }
+            #run {
+                font-size: 2em;
+            }
+        </style>
+        <script>
+            window.onload = function () {
+                var paper = Raphael("canvas", 640, 480),
+                    square = document.getElementById("square"),
+                    circle = document.getElementById("circle"),
+					ellipse = document.getElementById("ellipse");
+					 paper.clear();
+					 
+				paper.rect(0, 0, 640, 480, 10).attr({fill: "#ffff53", stroke: "none"});
+
+				
+				 square.onclick = function() { 
+					paper.rect(rPos(), rPos(), rScale(), 200, 10).attr({fill: "#AAFFAA", stroke: "none"}).animate({fill: "#223fa3", stroke: "#000", "stroke-width": 800, "stroke-opacity": 0.5}, 2000); 
+				};
+				circle.onclick = function() { 
+					paper.circle(rPos(), rPos(), 200).attr({fill: "#223fa3", stroke: "none"}).animate({fill: "#BBAFAC", stroke: "#FFF", "stroke-width": 10, "stroke-opacity": 0.8}, 2000); ; 
+
+				};
+				ellipse.onclick = function() { 
+					paper.ellipse(rPos(), rPos(), rScale(), 400).attr({fill: "#FFAAAA", stroke: "none"}).animate({fill: "#AAFFAA", stroke: "#FFF", "stroke-width": 10, "stroke-opacity": 0.8}, 2000); ; 
+
+				};
+				
+				
+            };
+
+			function rPos() {
+				return randomNumber(400, 0);	
+			}
+			function rScale() {
+				return randomNumber(25, 100);	
+			}
+			function randomNumber(minVal, rangeVal) {
+				return Math.floor((Math.random() * minVal) + rangeVal);	
+				
+			}
+
+        </script>
+    </head>
+<body>
+        <h1>Whacky Graphics</h1>
+        <div id="canvas"></div>
+        <div><button id="square" type="button" >Animation 1</button></div>
+        <div><button id="circle" type="button">Animation 2</button></div>
+		<div><button id="ellipse" type="button">Animation 3</button></div>
+    </body>
+</html>
